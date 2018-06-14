@@ -1,3 +1,4 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  # api controller, no session object.
+  protect_from_forgery with: :null_session
 end
