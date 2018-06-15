@@ -33,7 +33,7 @@ class Body extends React.Component {
 		// })
 
 		$.ajax({
-			url: development_url,
+			url: production_url,
 			type: "PUT",
 			data: JSON.stringify({car: car}),
 			headers: {
@@ -68,7 +68,7 @@ class Body extends React.Component {
 		// 	console.log('Car was deleted!')
 		// })
 		$.ajax({
-			url: development_url,
+			url: production_url,
 			type: "DELETE",
 			headers: {
 				'Content-Type': 'application/json'
@@ -105,7 +105,7 @@ class Body extends React.Component {
 		// })
 
 		$.ajax({
-			url: development_url,
+			url: production_url,
 			type: "POST",
 			data: body,
 			headers: {
