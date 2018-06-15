@@ -1,16 +1,16 @@
 // stateless and presentational
 // cars list is rendered by this stateless component
+// each car is rendered by class Car 
 const AllCars = (props) => {
 
 	var cars = props.cars.map((car) => {
 		return(
 			<div key={car.id}>
-				<h1>{car.name}</h1>
-				<p>{car.description}</p>
+				<Car car={car} handleDelete={props.handleDelete}/>
 			</div>
 		)
 	})
-	
+
 	return(
 		<div>
 			{cars}
