@@ -6,7 +6,7 @@ const AllCars = (props) => {
 	var cars = props.cars.map((car) => {
 		return(
 			<div key={car.id}>
-				<Car car={car} handleDelete={props.handleDelete}/>
+				<Car car={car} handleDelete={props.handleDelete} handleUpdate={props.handleUpdate}/>
 			</div>
 		)
 	})

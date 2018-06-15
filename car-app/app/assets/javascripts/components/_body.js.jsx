@@ -4,7 +4,7 @@
 
 class Body extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 
 		this.state = {
 			cars: []
@@ -13,6 +13,30 @@ class Body extends React.Component {
 		this.handleFormSubmit = this.handleFormSubmit.bind(this)
 		this.addNewCar = this.addNewCar.bind(this)
 		this.handleDelete = this.handleDelete.bind(this)
+		this.handleUpdate = this.handleUpdate.bind(this)
+		this.updateCar = this.updateCar.bind(this)
+
+	}
+
+	// Make put request to server
+	handleUpdate(car) {
+		fetch(`http://localhost:3000/api/v1/cars/${car.id}`, {
+			method: 'PUT',
+			body: JSON.stringify({car: car}),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then((response) => {
+			this.updateCar(car)
+		})
+	}
+	// filter out the updated car and make the state the current list of cars
+	updateCar(car) {
+		let newCars = this.state.cars.filter((updatedCar) => updatedCar.id !== car.id)
+		newCars.push(car)
+		this.setState({
+			cars: newCars
+		})
 	}
 	// makes a delete request to the server
 	handleDelete(id) {
@@ -64,8 +88,7 @@ class Body extends React.Component {
 		return(
 			<div>
 				<NewCar handleFormSubmit={this.handleFormSubmit}/>
-				<AllCars cars={this.state.cars} handleDelete={this.handleDelete}/>
-
+				<AllCars cars={this.state.cars} handleDelete={this.handleDelete} handleUpdate = {this.handleUpdate}/>
 			</div>
 		)
 	}
