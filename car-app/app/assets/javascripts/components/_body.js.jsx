@@ -22,14 +22,27 @@ class Body extends React.Component {
 	handleUpdate(car) {
 		let production_url = `https://react-cars.herokuapp.com/api/v1/cars/${car.id}`;
 		let development_url = `http://localhost:3000/api/v1/cars/${car.id}`;
-		fetch(development_url, {
-			method: 'PUT',
-			body: JSON.stringify({car: car}),
+		// fetch(development_url, {
+		// 	method: 'PUT',
+		// 	body: JSON.stringify({car: car}),
+		// 	headers: {
+		// 		'Content-Type': 'application/json'
+		// 	}
+		// }).then((response) => {
+		// 	this.updateCar(car)
+		// })
+
+		$.ajax({
+			url: development_url,
+			type: "PUT",
+			data: JSON.stringify({car: car}),
 			headers: {
 				'Content-Type': 'application/json'
+			},
+			success: response => {
+				console.log(response)
+				this.updateCar(car)
 			}
-		}).then((response) => {
-			this.updateCar(car)
 		})
 	}
 	// filter out the updated car and make the state the current list of cars
@@ -44,14 +57,27 @@ class Body extends React.Component {
 	handleDelete(id) {
 		let production_url = `https://react-cars.herokuapp.com/api/v1/cars/${id}`
 		let development_url = `http://localhost:3000/api/v1/cars/${id}`
-		fetch(development_url, {
-			method: 'DELETE',
+		
+		// fetch(development_url, {
+		// 	method: 'DELETE',
+		// 	headers: {
+		// 		'Content-Type': 'application/json'
+		// 	}
+		// }).then((response) => {
+		// 	this.deleteCar(id)
+		// 	console.log('Car was deleted!')
+		// })
+		$.ajax({
+			url: development_url,
+			type: "DELETE",
 			headers: {
 				'Content-Type': 'application/json'
+			},
+			success: response => {
+				console.log(response)
+				this.deleteCar(id)
+				console.log('Car was deleted!')
 			}
-		}).then((response) => {
-			this.deleteCar(id)
-			console.log('Car was deleted!')
 		})
 	}
 
@@ -68,14 +94,28 @@ class Body extends React.Component {
 		let development_url = 'http://localhost:3000/api/v1/cars'
 		let body = JSON.stringify({car: {name: name, description: description} })
 
-		fetch(development_url, {
-			method: 'POST',
+		// fetch(development_url, {
+		// 	method: 'POST',
+		// 	headers: {
+		// 		'Content-Type': 'application/json'
+		// 	},
+		// 	body: body,
+		// }).then((response) => {return response.json()}).then((car) => {
+		// 	this.addNewCar(car)
+		// })
+
+		$.ajax({
+			url: development_url,
+			type: "POST",
+			data: body,
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: body,
-		}).then((response) => {return response.json()}).then((car) => {
-			this.addNewCar(car)
+			success: response => {
+				console.log(response)
+				this.addNewCar(response)
+				console.log('Car was added!')
+			}
 		})
 	}
 
