@@ -20,7 +20,9 @@ class Body extends React.Component {
 
 	// Make put request to server
 	handleUpdate(car) {
-		fetch(`https://react-cars.herokuapp.com/api/v1/cars/${car.id}`, {
+		let production_url = `https://react-cars.herokuapp.com/api/v1/cars/${car.id}`;
+		let development_url = `http://localhost:3000/api/v1/cars/${car.id}`;
+		fetch(development_url, {
 			method: 'PUT',
 			body: JSON.stringify({car: car}),
 			headers: {
@@ -40,7 +42,9 @@ class Body extends React.Component {
 	}
 	// makes a delete request to the server
 	handleDelete(id) {
-		fetch(`https://react-cars.herokuapp.com/api/v1/cars/${id}`, {
+		let production_url = `https://react-cars.herokuapp.com/api/v1/cars/${id}`
+		let development_url = `http://localhost:3000/api/v1/cars/${id}`
+		fetch(development_url, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
@@ -60,9 +64,11 @@ class Body extends React.Component {
 	}
 	// makes post request to server and calls add new car
 	handleFormSubmit(name, description) {
+		let production_url = 'https://react-cars.herokuapp.com/api/v1/cars'
+		let development_url = 'http://localhost:3000/api/v1/cars'
 		let body = JSON.stringify({car: {name: name, description: description} })
 
-		fetch('https://react-cars.herokuapp.com/api/v1/cars', {
+		fetch(development_url, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -82,7 +88,10 @@ class Body extends React.Component {
 
 	// handle the fetch request to the server to get all cars
 	componentDidMount() {
-		fetch('https://react-cars.herokuapp.com/api/v1/cars.json').then((response) => {return response.json()}).then((data) => {this.setState({cars: data}) });
+		let production_url = 'https://react-cars.herokuapp.com/api/v1/cars.json'
+		let development_url = 'http://localhost:3000/api/v1/cars.json'
+
+		fetch(development_url).then((response) => {return response.json()}).then((data) => {this.setState({cars: data}) });
 	}
 	render() {
 		return(
