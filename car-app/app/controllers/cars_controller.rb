@@ -5,7 +5,7 @@ class Api::V1::CarsController < ApplicationController
 	end
 
 	def create
-		# http://localhost:3000/api/v1/cars.json
+
 		car = Car.create(car_params)
 		render json: car
 	end

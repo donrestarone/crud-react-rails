@@ -15,7 +15,9 @@ class Body extends React.Component {
 	render() {
 		return(
 			<div>
+
 				<AllCars cars={this.state.cars} />
+				<NewCar />
 			</div>
 		)
 	}
