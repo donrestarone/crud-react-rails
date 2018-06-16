@@ -2,7 +2,7 @@ const NewCar = (props) => {
 	let formFields = {}
 
 	return(
-		<form>
+		<div>
 			<p>Enter a new car into the database</p>
 			<div class="form-row">
 
@@ -21,6 +21,6 @@ const NewCar = (props) => {
 						<button class="btn btn-primary" onClick={() => props.handleFormSubmit(formFields.name.value, formFields.description.value)}>Submit</button>
 					</div>
 				</div>
-		</form>
+		</div>
 	)
 }
