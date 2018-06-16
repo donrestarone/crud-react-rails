@@ -118,15 +118,23 @@ class Body extends React.Component {
 				console.log(response)
 				this.addNewCar(response)
 				console.log('Car was added!')
+			},
+			error: response => {
+
+				this.addNewCar(response)
+				
 			}
 		})
 	}
 
 	// sets the new state using setstate()
 	addNewCar(car) {
-		this.setState({
-			cars: this.state.cars.concat(car)
-		})
+		console.log(car)
+		if (car.status !== 400) {
+			this.setState({
+				cars: this.state.cars.concat(car)
+			})
+		}
 	}
 
 	// handle the fetch request to the server to get all cars
@@ -135,7 +143,7 @@ class Body extends React.Component {
 		let production_url = '/api/v1/cars.json'
 		let development_url = 'http://localhost:3000/api/v1/cars.json'
 
-		fetch(production_url).then((response) => {return response.json()}).then((data) => {this.setState({cars: data}) });
+		fetch(production_url).then((response) => {return response.json()}).then((data) => {this.setState({cars: data}) })
 	}
 	render() {
 		return(

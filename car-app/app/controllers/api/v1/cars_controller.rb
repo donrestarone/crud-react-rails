@@ -8,9 +8,7 @@ class Api::V1::CarsController < ApplicationController
 		if car.save
 			render json: car
 		else 
-			render status: 400, json: {
-				message: 'error'
-			}.to_json
+			render json: car.errors, status: :bad_request
 		end
 	end
 
@@ -23,9 +21,9 @@ class Api::V1::CarsController < ApplicationController
 		if car.update(car_params)
 			render json: car
 		else 
-			render status: 400, json: {
+			render json: {
 				message: 'error'
-			}.to_json
+			}, status: 400
 		end
 	end
 
