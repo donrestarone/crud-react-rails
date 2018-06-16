@@ -3,7 +3,7 @@
 const Main = (props) => {
 	return(
 		<div class="container">
-			<h1>Check These Cars Out!</h1>
+			<h1 class="display-5 text-center">Check These Cars Out!</h1>
 			<Body/>
 
 		</div> 
