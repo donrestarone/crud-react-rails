@@ -34,7 +34,7 @@ class Body extends React.Component {
 		// })
 
 		$.ajax({
-			url: production_url,
+			url: development_url,
 			type: "PUT",
 			data: JSON.stringify({car: car}),
 			headers: {
@@ -70,7 +70,7 @@ class Body extends React.Component {
 		// 	console.log('Car was deleted!')
 		// })
 		$.ajax({
-			url: production_url,
+			url: development_url,
 			type: "DELETE",
 			headers: {
 				'Content-Type': 'application/json'
@@ -108,7 +108,7 @@ class Body extends React.Component {
 		// })
 
 		$.ajax({
-			url: production_url,
+			url: development_url,
 			type: "POST",
 			data: body,
 			headers: {
@@ -135,7 +135,7 @@ class Body extends React.Component {
 		let production_url = '/api/v1/cars.json'
 		let development_url = 'http://localhost:3000/api/v1/cars.json'
 
-		fetch(production_url).then((response) => {return response.json()}).then((data) => {this.setState({cars: data}) });
+		fetch(development_url).then((response) => {return response.json()}).then((data) => {this.setState({cars: data}) });
 	}
 	render() {
 		return(
