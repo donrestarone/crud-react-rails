@@ -141,6 +141,7 @@ class Body extends React.Component {
 		return(
 			<div>
 				<NewCar handleFormSubmit={this.handleFormSubmit}/>
+				<br />
 				<AllCars cars={this.state.cars} handleDelete={this.handleDelete} handleUpdate = {this.handleUpdate}/>
 			</div>
 		)
