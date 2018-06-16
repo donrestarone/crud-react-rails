@@ -4,8 +4,14 @@ class Api::V1::CarsController < ApplicationController
 	end
 
 	def create
-		car = Car.create(car_params)
-		render json: car
+		car = Car.new(car_params)
+		if car.save
+			render json: car
+		else 
+			render status: 400, json: {
+				message: 'error'
+			}.to_json
+		end
 	end
 
 	def destroy
@@ -14,8 +20,13 @@ class Api::V1::CarsController < ApplicationController
 
 	def update
 		car = Car.find(params[:id])
-		car.update_attributes(car_params)
-		render json: car
+		if car.update(car_params)
+			render json: car
+		else 
+			render status: 400, json: {
+				message: 'error'
+			}.to_json
+		end
 	end
 
 	private
