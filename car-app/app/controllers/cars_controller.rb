@@ -5,8 +5,8 @@ class Api::V1::CarsController < ApplicationController
 	end
 
 	def create
-
 		car = Car.create(car_params)
+		car = Car.call_giphy(car, car.name)
 		render json: car
 	end
 
@@ -15,9 +15,14 @@ class Api::V1::CarsController < ApplicationController
 	end
 
 	def update
-		car = Car.find(params[:id])
-		car.update_attributes(car_params)
-		render json: car
+
+		if Car.find(params[:id])
+			car = car.update_attributes(car_params)
+			Car.call_giphy(car, car.name)
+		#car.update_attributes(car_params)
+			render json: car
+		end		
+		
 	end
 
 	private

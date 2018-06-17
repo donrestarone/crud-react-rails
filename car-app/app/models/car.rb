@@ -7,6 +7,7 @@ class Car < ApplicationRecord
 		giphy_response = JSON.parse((HTTParty.get("http://api.giphy.com/v1/gifs/search?api_key=#{key}&q=#{car.name}")).body)
 		gif = Car.find_gif(giphy_response["data"])
 		car.picture = gif.sample
+		car.save
 		return car
 	end
 
