@@ -5,9 +5,13 @@ class Api::V1::CarsController < ApplicationController
 	end
 
 	def create
-		car = Car.create(car_params)
-		car = Car.call_giphy(car, car.name)
-		render json: car
+		car = Car.new(car_params)
+		if car.save
+			car = Car.call_giphy(car, car.name)
+			render json: car
+		else 
+			render json: car.errors, status: :bad_request
+		end
 	end
 
 	def destroy
