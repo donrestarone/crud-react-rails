@@ -142,8 +142,8 @@ class Body extends React.Component {
 		// let production_url = 'https://react-cars.herokuapp.com/api/v1/cars.json'
 		let production_url = '/api/v1/cars.json'
 		let development_url = 'http://localhost:3000/api/v1/cars.json'
+		fetch(production_url).then((response) => {return response.json()}).then((data) => {this.setState({cars: data}) } )
 
-		fetch(production_url).then((response) => {return response.json()}).then((data) => {this.setState({cars: data}) })
 	}
 	render() {
 		return(

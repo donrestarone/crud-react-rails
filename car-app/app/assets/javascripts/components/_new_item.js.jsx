@@ -13,7 +13,6 @@ const NewCar = (props) => {
 				<div class="col">
 					<input class="form-control" ref={input => formFields.description = input} placeholder='Engine oil optional' />
 				</div>
-
 			</div>
 			<br />
 				<div class="form-row">
