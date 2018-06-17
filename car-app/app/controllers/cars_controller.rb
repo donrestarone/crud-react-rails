@@ -17,8 +17,9 @@ class Api::V1::CarsController < ApplicationController
 	def update
 
 		if Car.find(params[:id])
-			car = car.update_attributes(car_params)
-			Car.call_giphy(car, car.name)
+			car = Car.find(params[:id])
+			car.update_attributes(car_params)
+			car = Car.call_giphy(car, car.name)
 		#car.update_attributes(car_params)
 			render json: car
 		end		
