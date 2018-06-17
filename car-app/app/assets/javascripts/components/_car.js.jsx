@@ -22,12 +22,14 @@ class Car extends React.Component {
 	render() {
 		let name = this.state.editable ? <input class="form-control" type='text' ref={input => this.name = input} defaultValue={this.props.car.name}/>:<h3>{this.props.car.name}</h3>
 		let description = this.state.editable ? <input class="form-control" type='text' ref={input => this.description = input} defaultValue={this.props.car.description}/>:<p>{this.props.car.description}</p>
+		let picture = <div><img src={this.props.car.picture}/></div>
 
 		return(
 			<div>
 				<br />
 				{name}
 				{description}
+				{picture}
 				<div class="btn-group">
 					<button class="btn btn-secondary btn-sm" onClick={() => this.handleEdit()}>{this.state.editable? 'Submit' : 'Edit'}</button>
 					<button class="btn btn-danger btn-sm" onClick={() => this.props.handleDelete(this.props.car.id)}>Delete</button>
